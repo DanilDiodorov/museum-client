@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 const MENU_LIST = [
     {
         title: 'История школы',
-        path: '/history',
+        path: '/pdf/history-of-school',
     },
 ]
 
