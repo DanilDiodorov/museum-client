@@ -3,11 +3,12 @@
 import { useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
 import { BiLoader } from 'react-icons/bi'
+import { Button } from './ui/button'
+import Link from 'next/link'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
 
-
-export default function PdfViewer({ file } : {file: string}) {
+export default function PdfViewer({ file }: { file: string }) {
     const [pages, setPages] = useState<any>()
     const [loading, setLoading] = useState<boolean>(true)
 
@@ -37,11 +38,17 @@ export default function PdfViewer({ file } : {file: string}) {
 
     return (
         <div>
-            {loading && (
+            {loading ? (
                 <div className="pt-[300px] flex justify-center">
                     <div className="text-[60px] text-gray-600 animate-spin">
                         <BiLoader />
                     </div>
+                </div>
+            ) : (
+                <div className="flex justify-center py-5 md:py-5">
+                    <Link href={file} download>
+                        <Button className="w-[200px]">Скачать</Button>
+                    </Link>
                 </div>
             )}
             <Document
@@ -49,7 +56,7 @@ export default function PdfViewer({ file } : {file: string}) {
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={false}
             >
-                <div className="flex flex-col gap-4 p-1 md:p-10">{pages}</div>
+                <div className="flex flex-col gap-4 p-1">{pages}</div>
             </Document>
         </div>
     )
