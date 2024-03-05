@@ -1,5 +1,9 @@
 import PdfViewer from '@/components/pdf-viewer'
 
 export default async function Pdf({ params }: { params: { name: string } }) {
-    return <PdfViewer file={`http://185.250.46.233:3001/file/${params.name}`} />
+    return (
+        <PdfViewer
+            file={`${process.env.PUBLIC_SERVER_API}/file/${params.name}`}
+        />
+    )
 }
