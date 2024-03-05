@@ -28,10 +28,6 @@ const MENU_LIST = [
                 path: '/pdf/history-of-internat',
             },
             {
-                title: 'Летопись',
-                path: '/pdf/letopis',
-            },
-            {
                 title: 'Охлопков С. В.',
                 path: '/pdf/okhlopkov',
             },
@@ -48,6 +44,10 @@ const MENU_LIST = [
     {
         title: 'Выпускники',
         path: '/graduates',
+    },
+    {
+        title: 'Летопись',
+        path: '/letopis',
     },
     {
         title: 'Сертификат',
