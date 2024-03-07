@@ -31,7 +31,7 @@ export default function PdfViewer({ file }: { file: string }) {
     }
 
     useEffect(() => {
-        setCurrentPageLoading(true)
+        if (active !== 1) setCurrentPageLoading(true)
         setPages(
             <Page
                 pageNumber={active}
@@ -49,6 +49,7 @@ export default function PdfViewer({ file }: { file: string }) {
 
     function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
         setMaxPage(numPages)
+        setCurrentPageLoading(false)
         setLoading(true)
         setPages(
             <Page
@@ -58,7 +59,6 @@ export default function PdfViewer({ file }: { file: string }) {
                 renderTextLayer={false}
                 onLoadSuccess={() => {
                     setLoading(false)
-                    setCurrentPageLoading(false)
                 }}
                 width={2000}
                 className="z-0"
@@ -75,7 +75,7 @@ export default function PdfViewer({ file }: { file: string }) {
                     </div>
                 </div>
             ) : (
-                <div className="flex justify-between py-5 md:py-5 container">
+                <div className="flex justify-between py-5 md:py-5 px-4">
                     <Link href={file} download>
                         <Button className="w-[150px] flex gap-4">
                             <FaDownload />
