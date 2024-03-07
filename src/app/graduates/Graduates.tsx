@@ -45,6 +45,7 @@ export default function Graduates({ file }: { file: string }) {
                     setLoading(false)
                 }}
                 width={2000}
+                className="z-0"
             />
         )
     }, [currentPage])
@@ -56,20 +57,20 @@ export default function Graduates({ file }: { file: string }) {
     }
 
     return (
-        <div>
+        <div className="z-0">
             {loading ? (
-                <div className="pt-[500px] flex justify-center">
+                <div className="pt-[300px] flex justify-center">
                     <div className="text-[60px] text-gray-600 animate-spin">
                         <BiLoader />
                     </div>
                 </div>
             ) : (
-                <div className="pt-5 pb-1 w-[300px]">
+                <div className="pt-5 pb-1 w-full md:w-[300px]">
                     <Select
                         value={currentPage}
                         onValueChange={(val) => setCurrentPage(val)}
                     >
-                        <SelectTrigger className="w-[300px]">
+                        <SelectTrigger className=" border-tarawera-950 outline-none">
                             <SelectValue placeholder="Выберите год выпуска" />
                         </SelectTrigger>
                         <SelectContent>

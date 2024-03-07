@@ -1,3 +1,5 @@
+import { TypeAnimation } from 'react-type-animation'
+
 export default function FirstSection() {
     return (
         <section className="bg-tarawera-950 text-white h-[600px]">
@@ -15,8 +17,33 @@ export default function FirstSection() {
                             обучении активизирует учебный процесс и поднимает у
                             учащихся интерес к знаниям вообще.
                         </div>
+                        <div className="text-xl lg:text-2xl mt-14">
+                            Направления музея:{' '}
+                            <TypeAnimation
+                                sequence={[
+                                    // Same substring at the start will only be typed out once, initially
+                                    'Организационная',
+                                    1000, // wait 1s before replacing "Mice" with "Hamsters"
+                                    'Методическая',
+                                    1000,
+                                    'Нормативная',
+                                    1000,
+                                    'Поисковая',
+                                    1000,
+                                    'Выставочная',
+                                    1000,
+                                    'Исследовательская',
+                                    1000,
+                                    'Проектная',
+                                    1000,
+                                ]}
+                                wrapper="span"
+                                speed={50}
+                                className="font-bold"
+                                repeat={Infinity}
+                            />
+                        </div>
                     </div>
-                    <div></div>
                 </div>
             </div>
         </section>

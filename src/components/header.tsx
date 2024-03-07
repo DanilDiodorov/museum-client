@@ -9,11 +9,11 @@ import {
     AccordionBody,
     AccordionHeader,
     Collapse,
-    IconButton,
 } from '@material-tailwind/react'
 import { IoMenu } from 'react-icons/io5'
 import { MdClose } from 'react-icons/md'
 import { MenuDrop } from './menu-drop'
+import useScroll from '@/hooks/useScroll'
 
 const MENU_LIST = [
     {
@@ -59,7 +59,7 @@ const NavList = ({ setOpenNav }: { setOpenNav: (isOpen: boolean) => void }) => {
     const [open, setOpen] = useState<number>(-1)
     const pathName = usePathname()
     return (
-        <ul className="flex gap-4 md:gap-7 md:flex-row md:p-0 flex-col py-5">
+        <ul className="flex gap-4 md:gap-7 md:flex-row md:p-0 flex-col py-5 z-20">
             {MENU_LIST.map((item, index) => {
                 if (item.children) {
                     return (
@@ -163,6 +163,16 @@ const NavList = ({ setOpenNav }: { setOpenNav: (isOpen: boolean) => void }) => {
 
 const Header = () => {
     const [openNav, setOpenNav] = useState<boolean>(false)
+    const [isOnTop, setIsOnTop] = useState<boolean>(true)
+    const currentScroll = useScroll()
+
+    React.useEffect(() => {
+        if (currentScroll > 100) {
+            setIsOnTop(false)
+        } else {
+            setIsOnTop(true)
+        }
+    }, [currentScroll])
 
     const handleWindowResize = () =>
         window.innerWidth >= 960 && setOpenNav(false)
@@ -175,31 +185,45 @@ const Header = () => {
         }
     }, [])
     return (
-        <header className="bg-tarawera-950 py-5 text-white flex items-center">
-            <nav className="container">
-                <div className="flex justify-between">
-                    <AppLogo />
-                    <div className="flex items-center">
-                        <div className="hidden md:block">
+        <>
+            <div className="min-h-[80px] z-20 bg-tarawera-950">
+                <header
+                    className={`${
+                        isOnTop
+                            ? 'bg-tarawera-950'
+                            : 'fixed px-5 py-1 w-[100vw]'
+                    } text-white flex items-center z-20`}
+                >
+                    <nav
+                        className={`container ${
+                            !isOnTop && 'shadow-xl bg-tarawera-900'
+                        }  bg-tarawera-950 z-20 rounded-md transition-all py-3 duration-300`}
+                    >
+                        <div className="flex justify-between">
+                            <AppLogo />
+                            <div className="flex items-center">
+                                <div className="hidden md:block">
+                                    <NavList setOpenNav={setOpenNav} />
+                                </div>
+                                <div
+                                    className="md:hidden"
+                                    onClick={() => setOpenNav(!openNav)}
+                                >
+                                    {openNav ? (
+                                        <MdClose className="h-6 w-6" />
+                                    ) : (
+                                        <IoMenu className="h-6 w-6" />
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <Collapse open={openNav} className="z-20">
                             <NavList setOpenNav={setOpenNav} />
-                        </div>
-                        <div
-                            className="md:hidden"
-                            onClick={() => setOpenNav(!openNav)}
-                        >
-                            {openNav ? (
-                                <MdClose className="h-6 w-6" />
-                            ) : (
-                                <IoMenu className="h-6 w-6" />
-                            )}
-                        </div>
-                    </div>
-                </div>
-                <Collapse open={openNav}>
-                    <NavList setOpenNav={setOpenNav} />
-                </Collapse>
-            </nav>
-        </header>
+                        </Collapse>
+                    </nav>
+                </header>
+            </div>
+        </>
     )
 }
 
