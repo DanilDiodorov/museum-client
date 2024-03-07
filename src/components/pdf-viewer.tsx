@@ -16,6 +16,7 @@ export default function PdfViewer({ file }: { file: string }) {
     const [loading, setLoading] = useState<boolean>(true)
     const [active, setActive] = useState<number>(1)
     const [maxPage, setMaxPage] = useState<number>(0)
+    const [currentPageLoading, setCurrentPageLoading] = useState<boolean>(false)
 
     const next = () => {
         if (active === maxPage) return
@@ -30,6 +31,7 @@ export default function PdfViewer({ file }: { file: string }) {
     }
 
     useEffect(() => {
+        setCurrentPageLoading(true)
         setPages(
             <Page
                 pageNumber={active}
@@ -37,7 +39,7 @@ export default function PdfViewer({ file }: { file: string }) {
                 loading={false}
                 renderTextLayer={false}
                 onLoadSuccess={() => {
-                    setLoading(false)
+                    setCurrentPageLoading(false)
                 }}
                 width={2000}
                 className="z-0"
@@ -56,6 +58,7 @@ export default function PdfViewer({ file }: { file: string }) {
                 renderTextLayer={false}
                 onLoadSuccess={() => {
                     setLoading(false)
+                    setCurrentPageLoading(false)
                 }}
                 width={2000}
                 className="z-0"
@@ -105,6 +108,11 @@ export default function PdfViewer({ file }: { file: string }) {
             >
                 <div className="px-4 rounded-md overflow-hidden">{pages}</div>
             </Document>
+            {currentPageLoading && (
+                <div className="px-4">
+                    <div className="bg-white w-full aspect-[210/297] rounded-md"></div>
+                </div>
+            )}
             {!loading && (
                 <div className="flex items-center gap-3 justify-center py-10">
                     <Button onClick={prev}>
