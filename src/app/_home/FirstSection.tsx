@@ -18,7 +18,7 @@ export default function FirstSection() {
                             учащихся интерес к знаниям вообще.
                         </div>
                         <div className="text-lg lg:text-2xl mt-14">
-                            Направления музея:{' '}
+                            Напревления:{' '}
                             <TypeAnimation
                                 sequence={[
                                     // Same substring at the start will only be typed out once, initially
@@ -27,6 +27,8 @@ export default function FirstSection() {
                                     'Методическая',
                                     1000,
                                     'Нормативная',
+                                    1000,
+                                    'Исследовательская',
                                     1000,
                                     'Поисковая',
                                     1000,
@@ -37,7 +39,7 @@ export default function FirstSection() {
                                 ]}
                                 wrapper="span"
                                 speed={50}
-                                className="font-bold"
+                                className="font-bold lowercase"
                                 repeat={Infinity}
                             />
                         </div>

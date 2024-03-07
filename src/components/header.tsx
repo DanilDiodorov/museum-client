@@ -197,7 +197,7 @@ const Header = () => {
                     <nav
                         className={`container ${
                             !isOnTop && 'shadow-xl bg-tarawera-900'
-                        }  bg-tarawera-950 z-20 rounded-md transition-all py-3 duration-300`}
+                        }  z-20 rounded-md transition-all py-3 duration-300`}
                     >
                         <div className="flex justify-between">
                             <AppLogo />

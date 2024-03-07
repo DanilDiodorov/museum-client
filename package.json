@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "prod": "npx pm2 delete client && npm i && npm run build && npx pm2 start --name client -- start"
+        "prod": "git pull && npx pm2 delete client && npm i && npm run build && npx pm2 start npm --name client -- start"
     },
     "dependencies": {
         "@material-tailwind/react": "^2.1.9",

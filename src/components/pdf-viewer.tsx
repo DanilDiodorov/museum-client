@@ -103,7 +103,7 @@ export default function PdfViewer({ file }: { file: string }) {
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={false}
             >
-                <div className="flex flex-col gap-4 p-1">{pages}</div>
+                <div className="px-4 rounded-md overflow-hidden">{pages}</div>
             </Document>
             {!loading && (
                 <div className="flex items-center gap-3 justify-center py-10">
