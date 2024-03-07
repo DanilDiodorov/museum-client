@@ -2,8 +2,8 @@ import { TypeAnimation } from 'react-type-animation'
 
 export default function FirstSection() {
     return (
-        <section className="bg-tarawera-950 text-white h-[600px]">
-            <div className="container pt-20">
+        <section className="bg-tarawera-950 text-white py-10">
+            <div className="container pt-10">
                 <div className="grid-cols-2 md:grid">
                     <div>
                         <h1 className="text-4xl font-bold">
@@ -17,7 +17,7 @@ export default function FirstSection() {
                             обучении активизирует учебный процесс и поднимает у
                             учащихся интерес к знаниям вообще.
                         </div>
-                        <div className="text-xl lg:text-2xl mt-14">
+                        <div className="text-lg lg:text-2xl mt-14">
                             Направления музея:{' '}
                             <TypeAnimation
                                 sequence={[
@@ -31,8 +31,6 @@ export default function FirstSection() {
                                     'Поисковая',
                                     1000,
                                     'Выставочная',
-                                    1000,
-                                    'Исследовательская',
                                     1000,
                                     'Проектная',
                                     1000,

@@ -91,7 +91,7 @@ export default function Graduates({ file }: { file: string }) {
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={false}
             >
-                <div className="">{pages}</div>
+                <div className="mt-5 rounded-md overflow-hidden">{pages}</div>
             </Document>
         </div>
     )

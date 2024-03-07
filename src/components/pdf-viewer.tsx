@@ -7,6 +7,7 @@ import { Button } from './ui/button'
 import Link from 'next/link'
 import { Typography } from '@material-tailwind/react'
 import { FaDownload } from 'react-icons/fa'
+import { IoIosArrowForward } from 'react-icons/io'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
 
@@ -79,7 +80,9 @@ export default function PdfViewer({ file }: { file: string }) {
                         </Button>
                     </Link>
                     <div className="flex items-center gap-3 justify-center">
-                        <Button onClick={prev}>Назад</Button>
+                        <Button onClick={prev}>
+                            <IoIosArrowForward className="rotate-180" />
+                        </Button>
                         <Typography
                             placeholder="asd"
                             color="gray"
@@ -89,7 +92,9 @@ export default function PdfViewer({ file }: { file: string }) {
                             из{' '}
                             <strong className="text-gray-900">{maxPage}</strong>
                         </Typography>
-                        <Button onClick={next}>Далее</Button>
+                        <Button onClick={next}>
+                            <IoIosArrowForward />
+                        </Button>
                     </div>
                 </div>
             )}
@@ -102,7 +107,9 @@ export default function PdfViewer({ file }: { file: string }) {
             </Document>
             {!loading && (
                 <div className="flex items-center gap-3 justify-center py-10">
-                    <Button onClick={prev}>Назад</Button>
+                    <Button onClick={prev}>
+                        <IoIosArrowForward className="rotate-180" />
+                    </Button>
                     <Typography
                         placeholder="asd"
                         color="gray"
@@ -111,7 +118,9 @@ export default function PdfViewer({ file }: { file: string }) {
                         <strong className="text-gray-900">{active}</strong> из{' '}
                         <strong className="text-gray-900">{maxPage}</strong>
                     </Typography>
-                    <Button onClick={next}>Далее</Button>
+                    <Button onClick={next}>
+                        <IoIosArrowForward />
+                    </Button>
                 </div>
             )}
         </div>
