@@ -14,6 +14,7 @@ import { IoMenu } from 'react-icons/io5'
 import { MdClose } from 'react-icons/md'
 import { MenuDrop } from './menu-drop'
 import useScroll from '@/hooks/useScroll'
+import { IoIosArrowDown } from 'react-icons/io'
 
 const MENU_LIST = [
     {
@@ -55,11 +56,17 @@ const MENU_LIST = [
     },
 ]
 
-const NavList = ({ setOpenNav }: { setOpenNav: (isOpen: boolean) => void }) => {
+const NavList = ({
+    setOpenNav,
+    isOnTop,
+}: {
+    setOpenNav: (isOpen: boolean) => void
+    isOnTop?: boolean
+}) => {
     const [open, setOpen] = useState<number>(-1)
     const pathName = usePathname()
     return (
-        <ul className="flex gap-4 md:gap-7 md:flex-row md:p-0 flex-col py-5 z-20">
+        <ul className="flex md:gap-7 md:flex-row md:p-0 flex-col py-5 z-20 ">
             {MENU_LIST.map((item, index) => {
                 if (item.children) {
                     return (
@@ -76,16 +83,26 @@ const NavList = ({ setOpenNav }: { setOpenNav: (isOpen: boolean) => void }) => {
                                 <Accordion
                                     open={open === index}
                                     placeholder="asd"
-                                    className="text-white border-b-transparent py-0"
+                                    className={`text-white border-b-transparent transition-all py-2 container ${
+                                        index === open &&
+                                        (isOnTop
+                                            ? 'bg-tarawera-900'
+                                            : 'bg-tarawera-950')
+                                    }`}
                                 >
                                     <AccordionHeader
                                         placeholder="asd"
-                                        className="text-white border-b-transparent text-[16px] hover:text-white py-0"
+                                        className="text-white border-b-transparent text-[16px] hover:text-white py-0 font-100 flex justify-start gap-3 items-center"
                                         onClick={() =>
                                             setOpen(index === open ? -1 : index)
                                         }
                                     >
-                                        {item.title}
+                                        <span>{item.title}</span>{' '}
+                                        <IoIosArrowDown
+                                            className={`transition-all ${
+                                                index === open && 'rotate-180'
+                                            }`}
+                                        />
                                     </AccordionHeader>
                                     <AccordionBody>
                                         <ul className="flex gap-7 flex-col text-white">
@@ -140,7 +157,11 @@ const NavList = ({ setOpenNav }: { setOpenNav: (isOpen: boolean) => void }) => {
                 } else {
                     const isActive = pathName.startsWith(item.path)
                     return (
-                        <li key={index} onClick={() => setOpenNav(false)}>
+                        <li
+                            className="container md:m-0 md:p-0 py-2"
+                            key={index}
+                            onClick={() => setOpenNav(false)}
+                        >
                             {isActive ? (
                                 <Link className="border-b-2" href={item.path}>
                                     {item.title}
@@ -186,20 +207,20 @@ const Header = () => {
     }, [])
     return (
         <>
-            <div className="min-h-[80px] z-20 bg-tarawera-950">
+            <div className="min-h-[75px] z-20 bg-tarawera-950">
                 <header
                     className={`${
                         isOnTop
                             ? 'bg-tarawera-950'
-                            : 'fixed px-5 py-1 w-[100vw]'
+                            : 'fixed py-1 w-[100vw] px-3'
                     } text-white flex items-center z-20`}
                 >
                     <nav
-                        className={`container ${
+                        className={`${
                             !isOnTop && 'shadow-xl bg-tarawera-900'
-                        }  z-20 rounded-md transition-all py-3 duration-300`}
+                        }  z-20 rounded-md transition-all py-3 duration-300 w-full md:container`}
                     >
-                        <div className="flex justify-between">
+                        <div className="flex justify-between container md:p-0 md:m-0">
                             <AppLogo />
                             <div className="flex items-center">
                                 <div className="hidden md:block">
@@ -217,8 +238,11 @@ const Header = () => {
                                 </div>
                             </div>
                         </div>
-                        <Collapse open={openNav} className="z-20">
-                            <NavList setOpenNav={setOpenNav} />
+                        <Collapse open={openNav} className="z-20 md:hidden">
+                            <NavList
+                                setOpenNav={setOpenNav}
+                                isOnTop={isOnTop}
+                            />
                         </Collapse>
                     </nav>
                 </header>

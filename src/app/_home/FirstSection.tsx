@@ -18,12 +18,11 @@ export default function FirstSection() {
                             учащихся интерес к знаниям вообще.
                         </div>
                         <div className="text-lg lg:text-2xl mt-14">
-                            Напревления:{' '}
+                            Направления:{' '}
                             <TypeAnimation
                                 sequence={[
-                                    // Same substring at the start will only be typed out once, initially
                                     'Организационная',
-                                    1000, // wait 1s before replacing "Mice" with "Hamsters"
+                                    1000,
                                     'Методическая',
                                     1000,
                                     'Нормативная',
