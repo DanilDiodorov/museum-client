@@ -1,13 +1,12 @@
 name: Deploy to Server
-
 on:
     push:
         branches:
             - main # Укажите вашу основную ветку
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
-
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
@@ -18,10 +17,29 @@ jobs:
                   SERVER_IP: ${{ secrets.SERVER_IP }}
                   USERNAME: ${{ secrets.USERNAME }}
               run: |
+                  # Запись приватного ключа в файл
                   echo "$SSH_PRIVATE_KEY" > private_key
                   chmod 600 private_key
+
+                  # Подключение к серверу и выполнение команд
                   ssh -i private_key -o StrictHostKeyChecking=no $USERNAME@$SERVER_IP << 'EOF'
-                    cd /home/museum/museum-client
+                    set -e # Прекращение выполнения при ошибке
+                    cd /home/museum/museum-client || exit
+
+                    # Обновление кода из репозитория
                     git pull
+
+                    # Проверка наличия Node.js и npm
+                    if ! command -v node &> /dev/null; then
+                        echo "Node.js не установлен. Установите его на сервере."
+                        exit 1
+                    fi
+
+                    if ! command -v npm &> /dev/null; then
+                        echo "npm не установлен. Установите его на сервере."
+                        exit 1
+                    fi
+
+                    # Запуск обновления приложения
                     npm run prod:update
                   EOF

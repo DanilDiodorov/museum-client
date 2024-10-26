@@ -6,7 +6,10 @@ export default function FirstSection() {
             <div className="container pt-10">
                 <div className="grid-cols-2 md:grid">
                     <div>
-                        <h1 className="text-4xl font-bold">Музей истории</h1>
+                        <h1 className="text-4xl font-bold">
+                            {/* eslint-disable-next-line react/no-unescaped-entities */}
+                            Музей истории истории школы МКОУ СОШ №7
+                        </h1>
                         <div className="mt-5 text-xl">
                             Школьный музей-это общественное объединение,
                             созданное совместными усилиями педагогов и учащихся
