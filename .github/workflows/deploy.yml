@@ -28,6 +28,8 @@ jobs:
                     export NVM_DIR=~/.nvm
                     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+                    nvm use 22
+
                     # Обновление кода из репозитория
                     git pull
 
