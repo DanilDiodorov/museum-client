@@ -22,7 +22,7 @@ jobs:
 
                   ssh -i private_key -o StrictHostKeyChecking=no $USERNAME@$SERVER_IP << 'EOF'
                     set -e
-                    cd /home/museum/museum-client || exit
+                    cd /home/museum/museum-client
 
                     # Инициализация nvm
                     export NVM_DIR=~/.nvm
