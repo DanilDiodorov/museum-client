@@ -1,4 +1,3 @@
-import image4 from '@/assets/4.jpg'
 import Image from 'next/image'
 
 export default function SecondSection() {
@@ -8,11 +7,13 @@ export default function SecondSection() {
                 <h2 className="text-4xl font-bold text-tarawera-950">
                     Школа вчера
                 </h2>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                     className="rounded-md mt-5 w-full"
-                    src={image4}
+                    src={'/images/4.jpg'}
                     alt="Школы вчера"
                 />
+
                 <div className="mt-5 text-xl text-tarawera-950">
                     Здесь хранятся материалы об истории школы от момента её
                     открытия, т.е. с 1928 года. Документы экспозиции

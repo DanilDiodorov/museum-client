@@ -1,6 +1,3 @@
-import Image from 'next/image'
-import image1 from '@/assets/1.jpg'
-import image2 from '@/assets/2.jpg'
 import { Carousel } from '@material-tailwind/react'
 
 export default function FourthSection() {
@@ -14,14 +11,16 @@ export default function FourthSection() {
                     className="rounded-md mt-5"
                     placeholder="Никто не забыт – ничто не забыто"
                 >
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                         className="h-[700px] object-cover w-full"
-                        src={image1}
+                        src={'/images/1.jpg'}
                         alt="Школы сегодня"
                     />
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                         className="h-[700px] object-cover w-full"
-                        src={image2}
+                        src={'/images/2.jpg'}
                         alt="Школы сегодня"
                     />
                 </Carousel>
@@ -70,14 +69,16 @@ export default function FourthSection() {
                         className="rounded-md"
                         placeholder="Никто не забыт – ничто не забыто"
                     >
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             className="h-[700px] object-cover w-full"
-                            src={image1}
+                            src={'/images/1.jpg'}
                             alt="Школы сегодня"
                         />
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             className="h-[700px] object-cover w-full"
-                            src={image2}
+                            src={'/images/2.jpg'}
                             alt="Школы сегодня"
                         />
                     </Carousel>
