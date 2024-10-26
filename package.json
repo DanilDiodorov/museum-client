@@ -8,7 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "prod:start": "pm2 start npm --name client -- start",
-        "prod:update": "npm i && npm run build && pm2 update client"
+        "prod:update": "pm2 update client"
     },
     "dependencies": {
         "@material-tailwind/react": "^2.1.9",

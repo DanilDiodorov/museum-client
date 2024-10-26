@@ -31,6 +31,10 @@ jobs:
                     # Обновление кода из репозитория
                     git pull
 
+                    npm i
+
+                    npm run build
+
                     # Запуск обновления приложения
                     npm run prod:update
                   EOF
