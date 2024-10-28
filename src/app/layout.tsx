@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '@/styles/global.css'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
+import 'ckeditor5/ckeditor5.css'
+import { Providers } from './Providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,9 +19,9 @@ export default function RootLayout({
     return (
         <html lang="ru">
             <body className={inter.className}>
-                <Header />
-                <main className="min-h-screen">{children}</main>
-                <Footer />
+                <main className="min-h-screen">
+                    <Providers>{children}</Providers>
+                </main>
             </body>
         </html>
     )

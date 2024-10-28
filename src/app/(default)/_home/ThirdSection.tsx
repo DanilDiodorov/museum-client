@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function ThirdSection() {
     return (
-        <div className="bg-tarawera-950 text-white">
+        <div className="bg-primary text-white">
             <div className="container py-10 md:hidden">
                 <h2 className="text-4xl font-bold">Школа сегодня</h2>
                 {/* eslint-disable-next-line @next/next/no-img-element */}

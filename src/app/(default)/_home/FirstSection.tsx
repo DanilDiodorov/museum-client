@@ -2,7 +2,7 @@ import { TypeAnimation } from 'react-type-animation'
 
 export default function FirstSection() {
     return (
-        <section className="bg-tarawera-950 text-white py-10">
+        <section className="bg-primary text-white py-10">
             <div className="container pt-10">
                 <div className="grid-cols-2 md:grid">
                     <div>

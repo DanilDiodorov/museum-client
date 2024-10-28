@@ -2,7 +2,7 @@ import { Carousel } from '@material-tailwind/react'
 
 export default function FourthSection() {
     return (
-        <div className="text-tarawera-950">
+        <div className="">
             <div className="container py-10 md:hidden">
                 <h2 className="text-4xl font-bold">
                     Никто не забыт – ничто не забыто

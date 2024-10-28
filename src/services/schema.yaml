@@ -1,0 +1,300 @@
+openapi: 3.0.0
+paths:
+  /api/category:
+    post:
+      operationId: CategoryController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryDto'
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDto'
+      tags:
+        - Category
+    get:
+      operationId: CategoryController_findAll
+      parameters: []
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryDto'
+      tags:
+        - Category
+  /api/category/{id}:
+    get:
+      operationId: CategoryController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDto'
+      tags:
+        - Category
+    patch:
+      operationId: CategoryController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryDto'
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDto'
+      tags:
+        - Category
+    delete:
+      operationId: CategoryController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDto'
+      tags:
+        - Category
+  /api/article:
+    post:
+      operationId: ArticleController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateArticleDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleDto'
+      tags:
+        - Article
+    get:
+      operationId: ArticleController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArticleDto'
+      tags:
+        - Article
+  /api/article/{id}:
+    get:
+      operationId: ArticleController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleDto'
+      tags:
+        - Article
+    patch:
+      operationId: ArticleController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateArticleDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleDto'
+      tags:
+        - Article
+    delete:
+      operationId: ArticleController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleDto'
+      tags:
+        - Article
+  /api/file/{filename}:
+    get:
+      operationId: FileController_getFile
+      parameters:
+        - name: filename
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - File handler
+  /api/file/upload:
+    post:
+      operationId: FileController_uploadFile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                upload:
+                  type: string
+                  format: binary
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDto'
+      tags:
+        - File handler
+info:
+  title: Museum
+  description: ''
+  version: 1.0.0
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateCategoryDto:
+      type: object
+      properties:
+        title:
+          type: string
+      required:
+        - title
+    ArticleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        text:
+          type: string
+        description:
+          type: string
+        categoryId:
+          type: string
+      required:
+        - id
+        - title
+        - text
+        - description
+        - categoryId
+    CategoryDto:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        article:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArticleDto'
+      required:
+        - id
+        - title
+        - article
+    UpdateCategoryDto:
+      type: object
+      properties: {}
+    CreateArticleDto:
+      type: object
+      properties:
+        title:
+          type: string
+        text:
+          type: string
+        categoryId:
+          type: string
+        description:
+          type: string
+      required:
+        - title
+        - text
+        - categoryId
+        - description
+    UpdateArticleDto:
+      type: object
+      properties: {}
+    FileDto:
+      type: object
+      properties:
+        url:
+          type: string
+      required:
+        - url

@@ -1,4 +1,4 @@
-import PdfViewer from '@/components/pdf-viewer'
+import PdfViewer from '@/components/PdfViewer'
 
 export default async function Pdf({ params }: { params: { name: string } }) {
     return (

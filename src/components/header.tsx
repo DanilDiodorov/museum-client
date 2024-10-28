@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import React, { useState } from 'react'
-import AppLogo from './app-logo'
+import AppLogo from './AppLogo'
 import { usePathname } from 'next/navigation'
 import {
     Accordion,
@@ -12,11 +12,15 @@ import {
 } from '@material-tailwind/react'
 import { IoMenu } from 'react-icons/io5'
 import { MdClose } from 'react-icons/md'
-import { MenuDrop } from './menu-drop'
+import { MenuDrop } from './MenuDrop'
 import useScroll from '@/hooks/useScroll'
 import { IoIosArrowDown } from 'react-icons/io'
 
 const MENU_LIST = [
+    {
+        title: 'Статьи',
+        path: '/articles',
+    },
     {
         title: 'История',
         children: [
@@ -70,7 +74,7 @@ const NavList = ({
             {MENU_LIST.map((item, index) => {
                 if (item.children) {
                     return (
-                        <>
+                        <li key={index}>
                             <div className="hidden md:block">
                                 <MenuDrop
                                     key={index}
@@ -152,7 +156,7 @@ const NavList = ({
                                     </AccordionBody>
                                 </Accordion>
                             </div>
-                        </>
+                        </li>
                     )
                 } else {
                     const isActive = pathName.startsWith(item.path)
@@ -207,17 +211,15 @@ const Header = () => {
     }, [])
     return (
         <>
-            <div className="min-h-[75px] z-20 bg-tarawera-950">
+            <div className="min-h-[75px] z-20 bg-primary">
                 <header
                     className={`${
-                        isOnTop
-                            ? 'bg-tarawera-950'
-                            : 'fixed py-1 w-[100vw] px-3'
+                        isOnTop ? 'bg-primary' : 'fixed py-1 w-[100vw] px-3'
                     } text-white flex items-center z-20`}
                 >
                     <nav
                         className={`${
-                            !isOnTop && 'shadow-xl bg-tarawera-900'
+                            !isOnTop && 'shadow-xl bg-primary'
                         }  z-20 rounded-md transition-all py-3 duration-300 w-full md:container`}
                     >
                         <div className="flex justify-between container md:p-0 md:m-0">
