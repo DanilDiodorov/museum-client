@@ -69,7 +69,7 @@ import {
 
 // import translations from 'ckeditor5'
 
-import 'ckeditor5/ckeditor5.css'
+// import 'ckeditor5/ckeditor5.css'
 
 interface Props {
     defaultValue?: string
