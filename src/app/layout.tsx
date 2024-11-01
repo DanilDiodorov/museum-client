@@ -3,12 +3,16 @@ import { Inter } from 'next/font/google'
 import '@/styles/global.css'
 import 'ckeditor5/ckeditor5.css'
 import { Providers } from './Providers'
+import { SEO } from '@/configs/seo.config'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Музей истории',
-    description: 'Музей истории МКОУ СОШ №7',
+    title: {
+        default: SEO.title,
+        template: `%s - ${SEO.title}`,
+    },
+    description: SEO.description,
 }
 
 export default function RootLayout({
