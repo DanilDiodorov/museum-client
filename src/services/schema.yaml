@@ -91,6 +91,23 @@ paths:
                 $ref: '#/components/schemas/CategoryDto'
       tags:
         - Category
+  /api/category/index:
+    put:
+      operationId: CategoryController_updateIndex
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateCategoryIndexDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Category
   /api/article:
     post:
       operationId: ArticleController_create
@@ -182,6 +199,23 @@ paths:
                 $ref: '#/components/schemas/ArticleDto'
       tags:
         - Article
+  /api/article/index:
+    put:
+      operationId: ArticleController_updateIndex
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateArticleIndexDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Article
   /api/file/{filename}:
     get:
       operationId: FileController_getFile
@@ -248,12 +282,15 @@ components:
           type: string
         categoryId:
           type: string
+        index:
+          type: number
       required:
         - id
         - title
         - text
         - description
         - categoryId
+        - index
     CategoryDto:
       type: object
       properties:
@@ -261,6 +298,8 @@ components:
           type: string
         title:
           type: string
+        index:
+          type: number
         article:
           type: array
           items:
@@ -268,10 +307,18 @@ components:
       required:
         - id
         - title
+        - index
         - article
     UpdateCategoryDto:
       type: object
       properties: {}
+    UpdateCategoryIndexDto:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+        - id
     CreateArticleDto:
       type: object
       properties:
@@ -291,6 +338,13 @@ components:
     UpdateArticleDto:
       type: object
       properties: {}
+    UpdateArticleIndexDto:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+        - id
     FileDto:
       type: object
       properties:

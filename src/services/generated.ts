@@ -14,6 +14,10 @@ export interface FileDto {
   url: string;
 }
 
+export interface UpdateArticleIndexDto {
+  id: string;
+}
+
 export interface UpdateArticleDto { [key: string]: unknown }
 
 export interface CreateArticleDto {
@@ -23,12 +27,17 @@ export interface CreateArticleDto {
   title: string;
 }
 
+export interface UpdateCategoryIndexDto {
+  id: string;
+}
+
 export interface UpdateCategoryDto { [key: string]: unknown }
 
 export interface ArticleDto {
   categoryId: string;
   description: string;
   id: string;
+  index: number;
   text: string;
   title: string;
 }
@@ -36,6 +45,7 @@ export interface ArticleDto {
 export interface CategoryDto {
   article: ArticleDto[];
   id: string;
+  index: number;
   title: string;
 }
 
@@ -99,6 +109,17 @@ export const categoryControllerRemove = (
       options);
     }
   
+export const categoryControllerUpdateIndex = (
+    updateCategoryIndexDto: UpdateCategoryIndexDto[],
+ options?: SecondParameter<typeof createInstance>,) => {
+      return createInstance<void>(
+      {url: `/api/category/index`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: updateCategoryIndexDto
+    },
+      options);
+    }
+  
 export const articleControllerCreate = (
     createArticleDto: BodyType<CreateArticleDto>,
  options?: SecondParameter<typeof createInstance>,) => {
@@ -149,6 +170,17 @@ export const articleControllerRemove = (
       options);
     }
   
+export const articleControllerUpdateIndex = (
+    updateArticleIndexDto: UpdateArticleIndexDto[],
+ options?: SecondParameter<typeof createInstance>,) => {
+      return createInstance<void>(
+      {url: `/api/article/index`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: updateArticleIndexDto
+    },
+      options);
+    }
+  
 export const fileControllerGetFile = (
     filename: string,
  options?: SecondParameter<typeof createInstance>,) => {
@@ -178,10 +210,12 @@ export type CategoryControllerFindAllResult = NonNullable<Awaited<ReturnType<typ
 export type CategoryControllerFindOneResult = NonNullable<Awaited<ReturnType<typeof categoryControllerFindOne>>>
 export type CategoryControllerUpdateResult = NonNullable<Awaited<ReturnType<typeof categoryControllerUpdate>>>
 export type CategoryControllerRemoveResult = NonNullable<Awaited<ReturnType<typeof categoryControllerRemove>>>
+export type CategoryControllerUpdateIndexResult = NonNullable<Awaited<ReturnType<typeof categoryControllerUpdateIndex>>>
 export type ArticleControllerCreateResult = NonNullable<Awaited<ReturnType<typeof articleControllerCreate>>>
 export type ArticleControllerFindAllResult = NonNullable<Awaited<ReturnType<typeof articleControllerFindAll>>>
 export type ArticleControllerFindOneResult = NonNullable<Awaited<ReturnType<typeof articleControllerFindOne>>>
 export type ArticleControllerUpdateResult = NonNullable<Awaited<ReturnType<typeof articleControllerUpdate>>>
 export type ArticleControllerRemoveResult = NonNullable<Awaited<ReturnType<typeof articleControllerRemove>>>
+export type ArticleControllerUpdateIndexResult = NonNullable<Awaited<ReturnType<typeof articleControllerUpdateIndex>>>
 export type FileControllerGetFileResult = NonNullable<Awaited<ReturnType<typeof fileControllerGetFile>>>
 export type FileControllerUploadFileResult = NonNullable<Awaited<ReturnType<typeof fileControllerUploadFile>>>

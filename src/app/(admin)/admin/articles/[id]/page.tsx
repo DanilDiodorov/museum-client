@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { ArticleForm } from '../ArticleForm'
+import { ArticleForm } from '../_main/ArticleForm'
 import { articleControllerFindOne } from '@/services/generated'
 
 interface Props {

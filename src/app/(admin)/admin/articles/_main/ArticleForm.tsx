@@ -5,8 +5,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ArticleControllerFindOneResult } from '@/services/generated'
 import React, { useState } from 'react'
-import { useArticleUpdate } from '../_hooks/use-article-update'
-import { useArticleAdd } from '../_hooks/use-article-add'
+import { useArticleUpdate } from '../../_hooks/use-article-update'
+import { useArticleAdd } from '../../_hooks/use-article-add'
+import { Confirm } from '@/components/Confirm'
+import { MdDeleteOutline } from 'react-icons/md'
+import { useArticleDelete } from '../../_hooks/use-article-delete'
+import { useRouter } from 'next/navigation'
 
 interface Props {
     article?: ArticleControllerFindOneResult
@@ -22,6 +26,8 @@ export const ArticleForm: React.FC<Props> = ({ article, categoryId }) => {
     const { mutate: updateMutate, isPending: updateIsPending } =
         useArticleUpdate()
     const { mutate: addMutate, isPending: addIsPending } = useArticleAdd()
+    const { mutateAsync: deleteMutate } = useArticleDelete()
+    const router = useRouter()
 
     const handleClick = () => {
         if (title && text && article) {
@@ -44,6 +50,13 @@ export const ArticleForm: React.FC<Props> = ({ article, categoryId }) => {
         }
     }
 
+    const handleDelete = async () => {
+        if (article) {
+            await deleteMutate(article.id)
+            router.push('/admin/articles')
+        }
+    }
+
     return (
         <div className="w-[600px] m-auto pt-5">
             <div className="flex flex-col gap-3">
@@ -58,13 +71,24 @@ export const ArticleForm: React.FC<Props> = ({ article, categoryId }) => {
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <TextEditor value={text} onChange={(e) => setText(e)} />
-                <Button
-                    onClick={handleClick}
-                    className="w-[300px]"
-                    disabled={updateIsPending || addIsPending}
-                >
-                    {article ? 'Сохранить' : 'Создать'}
-                </Button>
+                <div className="flex justify-between">
+                    <div>
+                        {article && (
+                            <Confirm onOk={handleDelete}>
+                                <Button variant="destructive">
+                                    <MdDeleteOutline />
+                                </Button>
+                            </Confirm>
+                        )}
+                    </div>
+                    <Button
+                        onClick={handleClick}
+                        disabled={updateIsPending || addIsPending}
+                        className=""
+                    >
+                        {article ? 'Сохранить' : 'Создать'}
+                    </Button>
+                </div>
             </div>
         </div>
     )

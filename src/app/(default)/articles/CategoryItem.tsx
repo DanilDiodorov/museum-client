@@ -11,7 +11,7 @@ interface Props {
 export const CategoryItem: React.FC<Props> = ({ category }) => {
     return (
         <div className="mt-3">
-            <div className="text-2xl font-bold">{category.title}</div>
+            <div className="text-3xl font-bold">{category.title}</div>
             <div>
                 <ArticleList articles={category.article} />
             </div>

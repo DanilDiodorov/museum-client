@@ -1,4 +1,4 @@
-import { ArticleForm } from '../ArticleForm'
+import { ArticleForm } from '../_main/ArticleForm'
 
 interface Props {
     searchParams?: {

@@ -15,50 +15,7 @@ import { MdClose } from 'react-icons/md'
 import { MenuDrop } from './MenuDrop'
 import useScroll from '@/hooks/useScroll'
 import { IoIosArrowDown } from 'react-icons/io'
-
-const MENU_LIST = [
-    {
-        title: 'Статьи',
-        path: '/articles',
-    },
-    {
-        title: 'История',
-        children: [
-            {
-                title: 'История школы',
-                path: '/pdf/history-of-school',
-            },
-            {
-                title: 'История интерната',
-                path: '/pdf/history-of-internat',
-            },
-            {
-                title: 'Охлопков С. В.',
-                path: '/pdf/okhlopkov',
-            },
-            {
-                title: 'Дормидонтов В. М.',
-                path: '/pdf/dormidontov',
-            },
-            {
-                title: 'Софронов Т. М.',
-                path: '/pdf/sofronov',
-            },
-        ],
-    },
-    {
-        title: 'Выпускники',
-        path: '/graduates',
-    },
-    {
-        title: 'Летопись',
-        path: '/letopis',
-    },
-    {
-        title: 'Сертификат',
-        path: '/pdf/sertificat',
-    },
-]
+import { MENU_LIST } from '@/configs/menu.config'
 
 const NavList = ({
     setOpenNav,

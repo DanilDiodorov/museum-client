@@ -8,7 +8,7 @@ export const useArticleAdd = () => {
         mutationKey: ['articleAdd'],
         mutationFn: articleControllerCreate,
         onSuccess: (data) => {
-            router.replace(`/admin/article/${data.id}`)
+            router.replace(`/admin/articles/${data.id}`)
         },
     })
 }

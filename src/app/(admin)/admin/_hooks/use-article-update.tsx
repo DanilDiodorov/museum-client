@@ -15,7 +15,7 @@ export const useArticleUpdate = (id?: string) => {
             articleControllerUpdate(data.id, data.data),
         onSuccess: (data) => {
             if (data.id !== id) {
-                router.replace(`/admin/article/${data.id}`)
+                router.replace(`/admin/articles/${data.id}`)
             }
         },
     })
