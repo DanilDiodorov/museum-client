@@ -1,4 +1,8 @@
-import { articleControllerUpdate, UpdateArticleDto } from '@/services/generated'
+import {
+    articleControllerUpdate,
+    articleControllerUpdateIndex,
+    UpdateArticleDto,
+} from '@/services/generated'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 
@@ -18,5 +22,12 @@ export const useArticleUpdate = (id?: string) => {
                 router.replace(`/admin/articles/${data.id}`)
             }
         },
+    })
+}
+
+export const useArticleUpdateIndex = () => {
+    return useMutation({
+        mutationKey: ['updateArticleIndex'],
+        mutationFn: articleControllerUpdateIndex,
     })
 }

@@ -16,6 +16,7 @@
     "dependencies": {
         "@ckeditor/ckeditor5-react": "^9.3.1",
         "@hello-pangea/dnd": "^17.0.0",
+        "@hookform/resolvers": "^3.9.1",
         "@material-tailwind/react": "^2.1.9",
         "@radix-ui/react-accordion": "^1.2.1",
         "@radix-ui/react-dialog": "^1.1.2",
@@ -29,18 +30,23 @@
         "ckeditor5": "^43.3.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.0",
+        "jsdom": "^25.0.1",
         "lucide-react": "^0.323.0",
         "next": "14.1.0",
+        "next-themes": "^0.4.1",
         "normalize.css": "^8.0.1",
         "orval": "^7.2.0",
         "react": "^18",
         "react-dom": "^18",
+        "react-hook-form": "^7.53.1",
         "react-icons": "^5.0.1",
         "react-pdf": "^7.7.1",
         "react-type-animation": "^3.2.0",
         "react-use": "^17.5.1",
+        "sonner": "^1.7.0",
         "tailwind-merge": "^2.2.1",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "zod": "^3.23.8"
     },
     "devDependencies": {
         "@types/node": "^20",

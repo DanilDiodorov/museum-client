@@ -6,11 +6,11 @@ import { Input } from '@/components/ui/input'
 import { ArticleControllerFindOneResult } from '@/services/generated'
 import React, { useState } from 'react'
 import { useArticleUpdate } from '../../_hooks/use-article-update'
-import { useArticleAdd } from '../../_hooks/use-article-add'
 import { Confirm } from '@/components/Confirm'
 import { MdDeleteOutline } from 'react-icons/md'
 import { useArticleDelete } from '../../_hooks/use-article-delete'
 import { useRouter } from 'next/navigation'
+import { useArticleAdd } from '../../_hooks/use-article-add'
 
 interface Props {
     article?: ArticleControllerFindOneResult

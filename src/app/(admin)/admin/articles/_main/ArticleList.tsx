@@ -1,6 +1,5 @@
 import {
     ArticleControllerFindAllResult,
-    articleControllerUpdateIndex,
     ArticleDto,
 } from '@/services/generated'
 import React, { useState } from 'react'
@@ -8,6 +7,7 @@ import { ArticleItem } from './ArticleItem'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
+import { useArticleUpdateIndex } from '../../_hooks/use-article-update'
 
 interface Props {
     articles: ArticleControllerFindAllResult
@@ -16,6 +16,7 @@ interface Props {
 
 export const ArticleList: React.FC<Props> = ({ articles, categoryId }) => {
     const router = useRouter()
+    const { mutate: updateIndexMutate } = useArticleUpdateIndex()
 
     const [artilceList, updateArticlesList] = useState<ArticleDto[]>(articles)
 
@@ -30,7 +31,7 @@ export const ArticleList: React.FC<Props> = ({ articles, categoryId }) => {
 
         const ids = updatedArticles.map((el) => ({ id: el.id }))
 
-        await articleControllerUpdateIndex(ids)
+        updateIndexMutate(ids)
     }
 
     return (

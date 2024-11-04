@@ -10,6 +10,21 @@ export type FileControllerUploadFileBody = {
   upload?: Blob;
 };
 
+export interface AuthDto {
+  email: string;
+  password: string;
+}
+
+export interface UserDto {
+  email: string;
+  id: string;
+}
+
+export interface AuthResponseDto {
+  accessToken: string;
+  user: UserDto;
+}
+
 export interface FileDto {
   url: string;
 }
@@ -205,6 +220,55 @@ if(fileControllerUploadFileBody.upload !== undefined) {
       options);
     }
   
+export const authControllerSession = (
+    
+ options?: SecondParameter<typeof createInstance>,) => {
+      return createInstance<UserDto>(
+      {url: `/api/auth/session`, method: 'GET'
+    },
+      options);
+    }
+  
+export const authControllerLogin = (
+    authDto: BodyType<AuthDto>,
+ options?: SecondParameter<typeof createInstance>,) => {
+      return createInstance<AuthResponseDto>(
+      {url: `/api/auth/login`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: authDto
+    },
+      options);
+    }
+  
+export const authControllerRegister = (
+    authDto: BodyType<AuthDto>,
+ options?: SecondParameter<typeof createInstance>,) => {
+      return createInstance<AuthResponseDto>(
+      {url: `/api/auth/register`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: authDto
+    },
+      options);
+    }
+  
+export const authControllerGetNewTokens = (
+    
+ options?: SecondParameter<typeof createInstance>,) => {
+      return createInstance<AuthResponseDto>(
+      {url: `/api/auth/login/access-token`, method: 'POST'
+    },
+      options);
+    }
+  
+export const authControllerLogout = (
+    
+ options?: SecondParameter<typeof createInstance>,) => {
+      return createInstance<void>(
+      {url: `/api/auth/logout`, method: 'POST'
+    },
+      options);
+    }
+  
 export type CategoryControllerCreateResult = NonNullable<Awaited<ReturnType<typeof categoryControllerCreate>>>
 export type CategoryControllerFindAllResult = NonNullable<Awaited<ReturnType<typeof categoryControllerFindAll>>>
 export type CategoryControllerFindOneResult = NonNullable<Awaited<ReturnType<typeof categoryControllerFindOne>>>
@@ -219,3 +283,8 @@ export type ArticleControllerRemoveResult = NonNullable<Awaited<ReturnType<typeo
 export type ArticleControllerUpdateIndexResult = NonNullable<Awaited<ReturnType<typeof articleControllerUpdateIndex>>>
 export type FileControllerGetFileResult = NonNullable<Awaited<ReturnType<typeof fileControllerGetFile>>>
 export type FileControllerUploadFileResult = NonNullable<Awaited<ReturnType<typeof fileControllerUploadFile>>>
+export type AuthControllerSessionResult = NonNullable<Awaited<ReturnType<typeof authControllerSession>>>
+export type AuthControllerLoginResult = NonNullable<Awaited<ReturnType<typeof authControllerLogin>>>
+export type AuthControllerRegisterResult = NonNullable<Awaited<ReturnType<typeof authControllerRegister>>>
+export type AuthControllerGetNewTokensResult = NonNullable<Awaited<ReturnType<typeof authControllerGetNewTokens>>>
+export type AuthControllerLogoutResult = NonNullable<Awaited<ReturnType<typeof authControllerLogout>>>

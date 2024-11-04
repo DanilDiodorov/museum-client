@@ -1,10 +1,14 @@
-'use server'
+'use client'
 
 import { categoryControllerFindAll } from '@/services/generated'
 import { CategoryList } from './CategoryList'
+import { useSuspenseQuery } from '@tanstack/react-query'
 
-export default async function Page() {
-    const categories = await categoryControllerFindAll()
+export default function Page() {
+    const { data: categories } = useSuspenseQuery({
+        queryKey: ['categories'],
+        queryFn: categoryControllerFindAll,
+    })
 
     return (
         <div className="container">

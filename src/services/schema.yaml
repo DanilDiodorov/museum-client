@@ -253,6 +253,79 @@ paths:
                 $ref: '#/components/schemas/FileDto'
       tags:
         - File handler
+  /api/auth/session:
+    get:
+      operationId: AuthController_session
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+      tags:
+        - Auth
+  /api/auth/login:
+    post:
+      operationId: AuthController_login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+      tags:
+        - Auth
+  /api/auth/register:
+    post:
+      operationId: AuthController_register
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+      tags:
+        - Auth
+  /api/auth/login/access-token:
+    post:
+      operationId: AuthController_getNewTokens
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+      tags:
+        - Auth
+  /api/auth/logout:
+    post:
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Auth
 info:
   title: Museum
   description: ''
@@ -352,3 +425,33 @@ components:
           type: string
       required:
         - url
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+      required:
+        - id
+        - email
+    AuthDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    AuthResponseDto:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserDto'
+        accessToken:
+          type: string
+      required:
+        - user
+        - accessToken

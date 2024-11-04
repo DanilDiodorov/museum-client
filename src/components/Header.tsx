@@ -16,6 +16,7 @@ import { MenuDrop } from './MenuDrop'
 import useScroll from '@/hooks/useScroll'
 import { IoIosArrowDown } from 'react-icons/io'
 import { MENU_LIST } from '@/configs/menu.config'
+import { useGetSession } from '@/hooks/use-get-session'
 
 const NavList = ({
     setOpenNav,
@@ -25,10 +26,16 @@ const NavList = ({
     isOnTop?: boolean
 }) => {
     const [open, setOpen] = useState<number>(-1)
+    const { user } = useGetSession()
     const pathName = usePathname()
+
+    const isLogged = user ? true : false
+
     return (
         <ul className="flex md:gap-7 md:flex-row md:p-0 flex-col py-5 z-20 ">
-            {MENU_LIST.map((item, index) => {
+            {MENU_LIST.filter((el) => {
+                return el.protected === false || (el.protected && isLogged)
+            }).map((item, index) => {
                 if (item.children) {
                     return (
                         <li key={index}>

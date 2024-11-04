@@ -1,15 +1,9 @@
+import { Button } from '@/components/ui/button'
 import { Calendar, Home, Inbox } from 'lucide-react'
+import { FaLongArrowAltLeft } from 'react-icons/fa'
 
-import {
-    Sidebar,
-    SidebarFooter,
-    SidebarGroupContent,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-} from '@/components/ui/sidebar'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const items = [
     {
@@ -30,24 +24,24 @@ const items = [
 ]
 
 export function AdminSidebar() {
+    const router = useRouter()
+
     return (
-        <Sidebar collapsible="icon">
-            <SidebarHeader title="Админ панель" />
-            <SidebarGroupContent>
-                <SidebarMenu>
-                    {items.map((item) => (
-                        <SidebarMenuItem key={item.title}>
-                            <SidebarMenuButton asChild>
-                                <Link href={item.url}>
-                                    <item.icon />
-                                    <span>{item.title}</span>
-                                </Link>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
-                    ))}
-                </SidebarMenu>
-            </SidebarGroupContent>
-            <SidebarFooter />
-        </Sidebar>
+        <div className="w-[200px] h-full bg-gray-200 p-3">
+            <div className="flex flex-col gap-3">
+                <Button onClick={() => router.push('/')}>
+                    <FaLongArrowAltLeft />
+                    Сайт
+                </Button>
+                {items.map((el) => (
+                    <Link href={el.url} key={el.url}>
+                        <div className="flex items-center gap-3">
+                            <el.icon size={20} />
+                            {el.title}
+                        </div>
+                    </Link>
+                ))}
+            </div>
+        </div>
     )
 }

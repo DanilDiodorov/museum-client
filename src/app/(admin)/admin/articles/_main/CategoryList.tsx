@@ -1,10 +1,6 @@
 'use client'
 
-import {
-    categoryControllerFindAll,
-    categoryControllerUpdateIndex,
-    CategoryDto,
-} from '@/services/generated'
+import { categoryControllerFindAll, CategoryDto } from '@/services/generated'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { Button } from '@/components/ui/button'
 import { CategoryForm } from './CategoryForm'
@@ -12,12 +8,15 @@ import React, { useEffect, useState } from 'react'
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 import { CategoryItem } from './CategoryItem'
 import { Accordion } from '@/components/ui/accordion'
+import { useCategoryUpdateIndex } from '../../_hooks/use-category-update'
 
 export const CategoryList = () => {
     const { data } = useSuspenseQuery({
         queryKey: ['categories'],
         queryFn: () => categoryControllerFindAll(),
     })
+    const { mutate: updateIndexMutate } = useCategoryUpdateIndex()
+
     const [categories, updateCategories] = useState<CategoryDto[] | null>(null)
 
     useEffect(() => {
@@ -35,7 +34,7 @@ export const CategoryList = () => {
 
         const ids = updatedCategories.map((el) => ({ id: el.id }))
 
-        await categoryControllerUpdateIndex(ids)
+        updateIndexMutate(ids)
     }
 
     return (

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 
 interface props {
@@ -14,6 +16,7 @@ export const FristImageRenderer: React.FC<props> = ({ htmlString }) => {
     return (
         <div className="h-full overflow-hidden flex justify-center items-center">
             {img ? (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
                     className="h-full"
                     src={img.src}

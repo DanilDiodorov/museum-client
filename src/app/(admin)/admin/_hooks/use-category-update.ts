@@ -1,5 +1,6 @@
 import {
     categoryControllerUpdate,
+    categoryControllerUpdateIndex,
     UpdateCategoryDto,
 } from '@/services/generated'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -20,5 +21,12 @@ export const useCategoryUpdate = (id?: string) => {
                 queryKey: ['categories'],
             })
         },
+    })
+}
+
+export const useCategoryUpdateIndex = () => {
+    return useMutation({
+        mutationKey: ['updateCategoryIndex'],
+        mutationFn: categoryControllerUpdateIndex,
     })
 }

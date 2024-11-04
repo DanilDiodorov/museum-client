@@ -1,16 +1,17 @@
 'use client'
 
 import { AdminSidebar } from '@/app/(admin)/admin/AdminSidebar'
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <SidebarProvider>
+        <main
+            className="w-full h-screen grid"
+            style={{ gridTemplateColumns: '150px 1fr' }}
+        >
             <AdminSidebar />
-            <main className="w-full p-3">
-                <SidebarTrigger />
-                <div className="w-[70%] mx-auto">{children}</div>
-            </main>
-        </SidebarProvider>
+            <div className=" overflow-y-auto">
+                <div className="w-[70%] mx-auto h-full">{children}</div>
+            </div>
+        </main>
     )
 }
