@@ -7,8 +7,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "prod:start": "npm i && npm run build && pm2 start npm --name client -- start",
-        "prod:update": "npm i && npm run build && pm2 update client",
+        "prod:start": "set NODE_ENV=production&& npm i && npm run build && pm2 start npm --name client -- start",
+        "prod:update": "set NODE_ENV=production&& npm i && npm run build && pm2 update client",
         "api:download": "curl http://localhost:5000/doc-yaml -o ./src/services/schema.yaml",
         "api:generate": "orval",
         "api:update": "npm run api:download && npm run api:generate"
