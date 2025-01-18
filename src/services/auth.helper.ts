@@ -7,11 +7,9 @@ export const getAccessToken = () => {
 }
 
 export const saveTokenStorage = (accessToken: string) => {
-    console.log(process.env.NODE_ENV)
-    const domain = process.env.NODE_ENV === 'development' ? 'localhost' : 'kutanaschoolmuseum.ru'
     Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-        domain,
-        sameSite: 'lax',
+        domain: 'localhost',
+        sameSite: 'strict',
         expires: 1,
     })
 }
