@@ -1,5 +1,13 @@
-const Footer = () => {
-    return <footer className="h-[100px] bg-primary"></footer>
-}
+import Link from "next/link";
 
-export default Footer
+const Footer = () => {
+  return (
+    <footer className="p-10 bg-primary text-white">
+      <div className="container mx-auto">
+        <Link href={"/admin"}>Админ</Link>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

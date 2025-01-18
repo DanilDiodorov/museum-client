@@ -8,12 +8,12 @@ import { errorCatch } from './api.helper'
 import { authService } from '@/services/auth.service'
 
 export const apiInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_PUBLIC_API_URL,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     withCredentials: true,
 })
 
 export const axiosClassic = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_PUBLIC_API_URL,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     withCredentials: true,
 })
 
