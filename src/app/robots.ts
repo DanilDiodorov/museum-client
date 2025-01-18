@@ -9,6 +9,5 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: '/admin',
             },
         ],
-        sitemap: `https://kutanaschoolmuseum.ru/sitemap.xml`,
     }
 }
